@@ -1,0 +1,255 @@
+/* login.css */
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    width: 400px;
+    background: #111;
+    border-radius: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+    padding: 3rem;
+}
+
+.login-form h2 {
+    text-align: center;
+    color: #45ffca;
+    margin-bottom: 2rem;
+}
+
+.login-form .input-box {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.login-form .input-box input {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 2px solid #45ffca;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    color: #fff;
+    outline: none;
+}
+
+.login-form .input-box label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.login-form .input-box input:focus + label,
+.login-form .input-box input:valid + label {
+    top: -0.5rem;
+    left: 1rem;
+    font-size: 1.2rem;
+    color: #45ffca;
+}
+
+.login-form .login-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to right, #45ffca, #0ef);
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-form .login-btn:hover {
+    background: linear-gradient(to right, #0ef, #45ffca);
+    box-shadow: 0 0 1rem #45ffca;
+}
+
+.login-form p {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login-form p a {
+    color: #45ffca;
+    text-decoration: none;
+}
+
+.login-form p a:hover {
+    text-decoration: underline;
+}
+
+.login-form .back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    color: #45ffca;
+    text-decoration: none;
+}
+
+.login-form .back-btn:hover {
+    text-decoration: underline;
+}
+/* register.css */
+body {
+    background: #000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.register-container {
+    width: 400px;
+    background: #111;
+    border-radius: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+    padding: 3rem;
+}
+
+.register-form h2 {
+    text-align: center;
+    color: #45ffca;
+    margin-bottom: 2rem;
+}
+
+.register-form .input-box {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.register-form .input-box input {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 2px solid #45ffca;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    color: #fff;
+    outline: none;
+}
+
+.register-form .input-box label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.register-form .input-box input:focus + label,
+.register-form .input-box input:valid + label {
+    top: -0.5rem;
+    left: 1rem;
+    font-size: 1.2rem;
+    color: #45ffca;
+}
+
+.register-form .register-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to right, #45ffca, #0ef);
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register-form .register-btn:hover {
+    background: linear-gradient(to right, #0ef, #45ffca);
+    box-shadow: 0 0 1rem #45ffca;
+}
+
+.register-form p {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.register-form p a {
+    color: #45ffca;
+    text-decoration: none;
+}
+
+.register-form p a:hover {
+    text-decoration: underline;
+}
+
+.register-form .back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 2rem;
+    color: #45ffca;
+    text-decoration: none;
+}
+
+.register-form .back-btn:hover {
+    text-decoration: underline;
+}
+/* login.css (add modal styling) */
+
+/* ... (your existing login.css) ... */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    border-radius: 5px;
+    background: #111;
+    color: white;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content p {
+    margin-top: 20px;
+    text-align: center;
+}

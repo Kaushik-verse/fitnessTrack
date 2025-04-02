@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Setting - FitTrack Pro</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css"/>
+    <link rel="stylesheet" href="goal.css">
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="logo">FitTrack<span>Pro</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#plans">Plans</a>
+            <a href="../index.html#contact">Contact</a>
+            <a href="login.html" class="nav-btn">Login</a>
+        </nav>
+        <div id="theme-toggle" class="ph-bold ph-moon"></div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Elevate Your Fitness Journey</h1>
+            <p>Embark on a transformative fitness experience with FitTrack Pro.  Our platform empowers you to define personalized goals, track your progress with precision, and celebrate every milestone.  Let us guide you to a healthier, stronger, and more vibrant you.</p>
+            <a href="#goal-setting" class="home-btn">Get Started</a>
+        </div>
+    </section>
+
+    <section class="goal-setting" id="goal-setting">
+        <h2 class="section-title">Goal Setting</h2>
+        <div class="goal-setting-content">
+            <h2>Set Your Goals</h2>
+            <p>
+                Define, plan, and track your fitness journey effectively with FitTrack Pro.
+            </p>
+
+            <form id="goal-form">
+                <h3>Set a New Goal</h3>
+                <div class="form-group">
+                    <label for="goal-name">Goal Name:</label>
+                    <input type="text" id="goal-name" name="goal-name" placeholder="e.g., Lose 10 pounds, Run a marathon" required>
+                </div>
+                <div class="form-group">
+                    <label for="goal-type">Goal Type:</label>
+                    <select id="goal-type" name="goal-type" required>
+                        <option value="" disabled selected>Select Goal Type</option>
+                        <option value="weight-loss">Weight Loss</option>
+                        <option value="fitness">Fitness</option>
+                        <option value="nutrition">Nutrition</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="end-date">End Date:</label>
+                    <input type="date" id="end-date" name="end-date" required>
+                </div>
+                 <div class="form-group">
+                    <label for="target-value">Target Value:</label>
+                    <input type="text" id="target-value" name="target-value" placeholder="e.g., 150 lbs, 26.2 miles, 2000 calories" required>
+                </div>
+                <div class="form-group">
+                    <label for="goal-notes">Notes:</label>
+                    <textarea id="goal-notes" name="goal-notes" rows="3"></textarea>
+                </div>
+                <button type="submit">Set Goal</button>
+                <button type="button" id="clear-goals">Clear Goals</button>
+            </form>
+
+            <div id="goal-list">
+                <h4>Your Goals</h4>
+                <ul></ul>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="logo">FitTrackPro</a>
+            <div class="footer-links">
+                <div class="footer-links-col">
+                    <a href="#">Workout Plans</a>
+                    <a href="#">Exercise Library</a>
+                    <a href="#">Nutrition Guides</a>
+                    <a href="#">Trainer Profiles</a>
+                </div>
+                <div class="footer-links-col">
+                    <a href="#">About Us</a>
+                    <a href="#">Blogs</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-links-col">
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Security</a>
+                </div>
+            </div>
+            <div class="app-links">
+                 <a href="#">
+                    <img src="assets/app.svg" alt="Download on the App Store">
+                </a>
+                <a href="#">
+                    <img src="assets/play.svg" alt="Get it on Google Play">
+                </a>
+            </div>
+            <div class="footer-text">
+                <p>Fuel your fitness journey with FitTrackPro. Access expert-designed workout plans, nutritional guidance, and connect with certified trainers. #BeBetterEveryDay</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><img src="assets/youtube-icon-5.svg" alt="YouTube"></a>
+                <a href="#"><img src="assets/facebook-3-2.svg" alt="Facebook"></a>
+                <a href="#"><img src="assets/instagram-2016-5.svg" alt="Instagram"></a>
+                <a href="#"><img src="assets/twitter-logo-2.svg" alt="Twitter"></a>
+                <a href="#"><img src="assets/discord-6.svg" alt="Discord"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="goal.js"></script>
+</body>
+</html>

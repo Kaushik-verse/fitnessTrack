@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracking - FitTrack Pro</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css"/>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style-type: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --bg-color: #000;
+            --snd-bg-color: #111;
+            --text-color: #fff;
+            --main-color: #45ffca;
+            --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+            --border-radius: 1rem;
+            --transition: all 0.5s ease;
+        }
+
+        html {
+            font-size: 75%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 10rem 8% 2rem;
+        }
+
+        header {
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 9%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, color 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            color: var(--main-color);
+        }
+
+        span {
+            color: var(--main-color);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-left: 4rem;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--main-color);
+            border-bottom: 3px solid var(--main-color);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: transparent;
+            color: var(--main-color);
+            border: 2px solid var(--main-color);
+            border-radius: var(--border-radius);
+            font-size: 1.6rem;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            animation: fadeIn 1s ease, pulse 2s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.06);
+            }
+        }
+
+        .nav-btn:hover {
+            background: var(--main-color);
+            color: var(--text-color);
+            box-shadow: 0 0 18px var(--main-color);
+        }
+
+        #menu-icon {
+            font-size: 3.6rem;
+            color: var(--main-color);
+            cursor: pointer;
+            display: none;
+            transition: color 0.3s ease;
+        }
+
+        #menu-icon:hover {
+            color: #0ef;
+        }
+
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 0 8%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-content {
+            max-width: 700px;
+            z-index: 1;
+        }
+
+        .home-content h1 {
+            font-size: 6rem;
+            font-weight: 900;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .home-content p {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 2.5rem;
+            animation: fadeIn 1s ease;
+            line-height: 1.7;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            background: linear-gradient(to right, var(--main-color), #0ef);
+            color: var(--bg-color);
+            font-size: 2rem;
+            font-weight: 700;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            animation: pulse 3s infinite alternate;
+        }
+
+        .home-btn:hover {
+            background: linear-gradient(to right, #0ef, var(--main-color));
+            box-shadow: 0 0 25px var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            animation: slideInDown 1s ease;
+        }
+
+        .workout-tracking-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--snd-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        .workout-tracking-content h2 {
+            font-size: 3.5rem;
+            color: var(--main-color);
+            margin-bottom: 2rem;
+        }
+
+        .workout-tracking-content p {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .tracking-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tracking-features .feature-box {
+            flex: 1 1 300px;
+            padding: 2rem;
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .tracking-features .feature-box:hover {
+            transform: translateY(-1rem);
+            border-left: 0.5rem solid var(--main-color);
+            border-right: 0.5rem solid var(--main-color);
+        }
+
+        .tracking-features .feature-box i {
+            font-size: 4rem;
+            color: var(--main-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .tracking-features .feature-box h3 {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .tracking-features .feature-box p {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .progress-section {
+            margin-top: 5rem;
+            text-align: left;
+        }
+
+        .progress-section h3{
+            font-size: 2.5rem;
+            color: var(--main-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .progress-section ul {
+            list-style-position: inside;
+            padding-left: 0;
+            margin-bottom: 2.5rem;
+        }
+
+        .progress-section li {
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+        }
+
+        footer {
+    color: #fff;
+    padding: 3rem 0;
+    text-align: left;
+    background-color: #1a1a1a;
+}
+
+footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+footer .logo {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #45ffca;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.footer-links-col {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    margin-bottom: 1.5rem;
+    min-width: 180px;
+}
+
+.footer-links-col a {
+    color: #eee;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links-col a:hover {
+    color: #45ffca;
+    text-decoration: underline;
+}
+
+.footer .app-links {
+    display: flex;
+    margin-bottom: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.footer .app-links a {
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer .app-links img {
+    height: auto;
+    max-width: 160px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+.footer .app-links img:hover{
+    transform: scale(1.05);
+}
+
+
+.footer .footer-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    color: #ccc;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.footer .social-links {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    margin-right: 1.5rem;
+    font-size: 2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .social-links a:hover {
+    background-color: #45ffca;
+    transform: translateY(-4px);
+}
+
+.footer .social-links img{
+    height: auto;
+    max-width: 48px;
+    transition:  transform 0.3s ease;
+}
+
+.footer .social-links img:hover{
+     transform: translateY(-4px);
+}
+@media (max-width: 768px) {
+    .footer .footer-links {
+        flex-direction: column;
+    }
+    .footer .footer-links-col {
+        margin-bottom: 1.5rem;
+        min-width: auto;
+    }
+    .footer .app-links {
+        flex-direction: column;
+    }
+    .footer .app-links a {
+        margin-bottom: 1rem;
+    }
+    .footer .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer .logo{
+        font-size: 2rem;
+    }
+   .footer .footer-text {
+        font-size: 0.8rem;
+    }
+    .footer .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+}
+
+        /* Form Styles */
+        form {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        form h3 {
+            font-size: 2.2rem;
+            color: var(--main-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        form label {
+            display: block;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid #555;
+            background: #333;
+            color: var(--text-color);
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border-color: var(--main-color);
+            box-shadow: 0 0 5px rgba(69, 255, 202, 0.5);
+        }
+
+        form textarea {
+            resize: vertical;
+        }
+
+        form button {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(to right, var(--main-color), #0ef);
+            color: var(--bg-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        form button:hover {
+            background: linear-gradient(to right, #0ef, var(--main-color));
+            box-shadow: 0 0 1rem var(--main-color);
+            transform: translateY(-3px);
+        }
+
+        #exercise-list {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        #exercise-list h4 {
+            font-size: 2rem;
+            color: var(--main-color);
+            margin-bottom: 1rem;
+        }
+
+        #exercise-list ul {
+            list-style-type: disc;
+            padding-left: 2rem;
+        }
+
+        #exercise-list li {
+            font-size: 1.6rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        #goal-setting {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        #goal-setting h4 {
+            font-size: 2rem;
+            color: var(--main-color);
+            margin-bottom: 1rem;
+        }
+
+        #goal-setting ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        #goal-setting li {
+             font-size: 1.6rem;
+            color: var(--text-color);
+            padding: 1.5rem;
+            background: #2a2a2a;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--main-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            line-height: 1.7;
+        }
+
+        #goal-setting li:hover {
+            background-color: #333;
+            transform: translateX(5px);
+        }
+
+        #goal-setting li strong{
+            color: var(--main-color);
+        }
+
+        #workout-log {
+            margin-top: 3rem;
+            text-align: left;
+        }
+
+        #workout-log h4 {
+            font-size: 2rem;
+            color: var(--main-color);
+            margin-bottom: 1rem;
+        }
+
+        #workout-log ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        #workout-log li {
+            background: #222;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--text-color);
+            border-left: 4px solid var(--main-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #workout-log li:hover {
+            background-color: #333;
+            transform: translateX(5px);
+        }
+
+        #workout-log li strong {
+            color: var(--main-color);
+            margin-right: 0.5rem;
+        }
+
+        .clear-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: #dc3545;
+            color: var(--text-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 2rem;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, #dc3545, #c82333);
+        }
+
+        .clear-btn:hover {
+            background: linear-gradient(to right, #c82333, #dc3545);
+            box-shadow: 0 0 1rem #dc3545;
+            transform: translateY(-3px);
+        }
+
+
+        /* Responsive Media Queries */
+        @media (max-width: 991px) {
+            html {
+                font-size: 60%;
+            }
+
+            header {
+                padding: 2rem 5%;
+            }
+
+            section {
+                padding: 8rem 5% 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 5rem;
+            }
+
+            .home-content p {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 4rem;
+            }
+
+            .workout-tracking-content h2 {
+                font-size: 3rem;
+            }
+
+            .workout-tracking-content p {
+                font-size: 1.6rem;
+            }
+            .tracking-features .feature-box {
+                flex: 1 1 100%;
+            }
+             footer .app-links a {
+                margin: 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--snd-bg-color);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                transition: var(--transition);
+                padding: 8rem 2rem;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .navbar.active {
+                right: 0;
+            }
+
+            .navbar a {
+                margin-left: 0;
+                margin-bottom: 2rem;
+                font-size: 2rem;
+            }
+
+            .navbar a:hover,
+            .navbar a.active {
+                border-bottom: none;
+                color: var(--main-color);
+            }
+
+            .nav-btn {
+                margin-top: 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 4rem;
+            }
+
+            .home-content p {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 3.5rem;
+            }
+
+            .workout-tracking-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .workout-tracking-content p {
+                font-size: 1.4rem;
+            }
+             footer .app-links a {
+                margin: 0.5rem;
+            }
+             form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%;
+            }
+
+            header {
+                padding: 2rem 3%;
+            }
+
+            section {
+                padding: 8rem 3% 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 3rem;
+            }
+
+            .home-content p {
+                font-size: 1.2rem;
+            }
+
+            .home-btn {
+                padding: 1rem 2.5rem;
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .workout-tracking-content h2 {
+                font-size: 2rem;
+            }
+
+            .workout-tracking-content p {
+                font-size: 1.2rem;
+            }
+             footer .app-links a {
+                margin: 0.5rem;
+                flex: none;
+                width: 100%;
+                max-width: 300px;
+            }
+             form {
+                padding: 1rem;
+            }
+             form h3{
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="logo">FitTrack<span>Pro</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#plans">Plans</a>
+            <a href="../index.html#contact">Contact</a>
+            <a href="login.html" class="nav-btn">Login</a>
+        </nav>
+        <div id="theme-toggle" class="ph-bold ph-moon"></div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Workout Tracking</h1>
+            <p>
+                Track your progress and stay motivated with FitTrack Pro's workout tracking tools.
+            </p>
+            <a href="#contact" class="home-btn">Get Started</a>
+        </div>
+    </section>
+
+    <section class="workout-tracking">
+        <h2 class="section-title">Workout Tracking</h2>
+        <div class="workout-tracking-content">
+<h2>Track Your Fitness Journey</h2>
+            <p>
+                At FitTrack Pro, we provide you with the tools and resources you need tomonitor your workouts, track your progress, and achieve your fitness goals.  Our workout tracking features are designed to help you stay motivated, make informed decisions about your training, and celebrate your achievements.
+            </p>
+
+            <form id="workout-form">
+                <h3>Log Your Workout</h3>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="exercise">Exercise:</label>
+                    <select id="exercise" name="exercise" required>
+                        <option value="" disabled selected>Select Exercise</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sets">Sets:</label>
+                    <input type="number" id="sets" name="sets" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="reps">Reps:</label>
+                    <input type="number" id="reps" name="reps" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (lbs):</label>
+                    <input type="number" id="weight" name="weight" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </div>
+                <button type="submit">Add Workout</button>
+            </form>
+
+            <div id="exercise-list">
+                <h4>Available Exercises</h4>
+                <ul>
+                    </ul>
+            </div>
+
+            <div id="workout-log">
+                <h4>Workout Log</h4>
+                <ul id="workout-log-list">
+                    </ul>
+                <button id="clear-log-btn" class="clear-btn">Clear Log</button>
+            </div>
+
+            <div id="goal-setting">
+                <h4>Goal Setting</h4>
+                <p>
+                    Set your fitness goals to stay motivated and track your progress.
+                </p>
+                <ul>
+                    <li><strong>Specific:</strong> Define your goals clearly (e.g., "Lose 10 pounds").</li>
+                    <li><strong>Measurable:</strong> Track your progress (e.g., "Weigh myself weekly").</li>
+                    <li><strong>Achievable:</strong> Set realistic goals.</li>
+                    <li><strong>Relevant:</strong> Ensure your goals align with your overall fitness plan.</li>
+                    <li><strong>Time-bound:</strong> Set a deadline (e.g., "By [Date]").</li>
+                </ul>
+            </div>
+        </div>
+</section>
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="logo">FitTrackPro</a>
+            <div class="footer-links">
+                <div class="footer-links-col">
+                    <a href="#">Workout Plans</a>
+                    <a href="#">Exercise Library</a>
+                    <a href="#">Nutrition Guides</a>
+                    <a href="#">Trainer Profiles</a>
+                </div>
+                <div class="footer-links-col">
+                    <a href="#">About Us</a>
+                    <a href="#">Blogs</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-links-col">
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Security</a>
+                </div>
+            </div>
+            <div class="app-links">
+                 <a href="#">
+                    <img src="assets/app.svg" alt="Download on the App Store">
+                </a>
+                <a href="#">
+                    <img src="assets/play.svg" alt="Get it on Google Play">
+                </a>
+            </div>
+            <div class="footer-text">
+                <p>Fuel your fitness journey with FitTrackPro.  Access expert-designed workout plans, nutritional guidance, and connect with certified trainers. #BeBetterEveryDay</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><img src="assets/youtube-icon-5.svg" alt="YouTube"></a>
+                <a href="#"><img src="assets/facebook-3-2.svg" alt="Facebook"></a>
+                <a href="#"><img src="assets/instagram-2016-5.svg" alt="Instagram"></a>
+                <a href="#"><img src="assets/twitter-logo-2.svg" alt="Twitter"></a>
+                <a href="#"><img src="assets/discord-6.svg" alt="Discord"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelectorAll('.navbar a');
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const header = document.querySelector('header');
+
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            menuIcon.classList.toggle('active');});
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    navbar.classList.remove('active');
+                    menuIcon.classList.remove('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                 if (window.innerWidth < 768) {
+                    navbar.classList.remove('active');
+                    menuIcon.classList.remove('active');
+                }
+            });
+        });
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            header.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                themeToggle.classList.remove('ph-moon');
+                themeToggle.classList.add('ph-sun');
+            } else {
+                themeToggle.classList.remove('ph-sun');
+                themeToggle.classList.add('ph-moon');
+            }
+        });
+
+        // Get references to form elements
+        const workoutForm = document.getElementById('workout-form');
+        const exerciseSelect = document.getElementById('exercise');
+        const exerciseList = document.getElementById('exercise-list').querySelector('ul');
+        const workoutLogList = document.getElementById('workout-log-list');
+        const clearLogBtn = document.getElementById('clear-log-btn');
+
+
+        let workouts = [];
+        let exercises = [
+            "Bench Press", "Squat", "Deadlift", "Overhead Press", "Barbell Row",
+            "Dumbbell Curl", "Triceps Extension", "Leg Press", "Calf Raise", "Pull-up",
+            "Push-up", "Sit-up", "Plank"
+        ];
+
+        exercises.forEach(exercise => {
+            let option = document.createElement('option');
+            option.value = exercise;
+            option.textContent = exercise;
+            exerciseSelect.appendChild(option);
+
+            let listItem = document.createElement('li');
+            listItem.textContent = exercise;
+            exerciseList.appendChild(listItem);
+        });
+
+        function displayWorkouts() {
+            workoutLogList.innerHTML = '';
+            workouts.forEach(workout => {
+                let listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <strong>Date:</strong> ${workout.date},
+                    <strong>Exercise:</strong> ${workout.exercise},
+                    <strong>Sets:</strong> ${workout.sets},
+                    <strong>Reps:</strong> ${workout.reps},
+                    <strong>Weight:</strong> ${workout.weight} lbs,
+                    <strong>Notes:</strong> ${workout.notes}
+                `;
+                workoutLogList.appendChild(listItem);
+            });
+        }
+
+
+        workoutForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const workoutDate = document.getElementById('date').value;
+            const workoutExercise = document.getElementById('exercise').value;
+            const workoutSets = parseInt(document.getElementById('sets').value);
+            const workoutReps = parseInt(document.getElementById('reps').value);
+            const workoutWeight = parseInt(document.getElementById('weight').value);
+            const workoutNotes = document.getElementById('notes').value;
+
+            if (workoutSets <= 0 || workoutReps <= 0 || workoutWeight < 0) {
+                alert("Please enter valid values for sets, reps, and weight.");
+                return;
+            }
+
+            const newWorkout = {
+                date: workoutDate,
+                exercise: workoutExercise,
+                sets: workoutSets,
+                reps: workoutReps,
+                weight: workoutWeight,
+                notes: workoutNotes
+            };
+
+            workouts.push(newWorkout);
+            localStorage.setItem('workouts', JSON.stringify(workouts));
+
+            workoutForm.reset();
+            displayWorkouts();
+            alert("Workout logged successfully!");
+        });
+
+        clearLogBtn.addEventListener('click', () => {
+            workouts = [];
+            localStorage.removeItem('workouts');
+            displayWorkouts();
+            alert("Workout log cleared!");
+        });
+
+        window.onload = () => {
+            const storedWorkouts = localStorage.getItem('workouts');
+            if (storedWorkouts) {
+                workouts = JSON.parse(storedWorkouts);
+            }
+            displayWorkouts();
+        };
+    </script>
+</body>
+</html>

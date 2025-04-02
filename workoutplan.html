@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Plans - FitTrack Pro</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css"/>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style-type: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --bg-color: #000;
+            --snd-bg-color: #111;
+            --text-color: #fff;
+            --main-color: #45ffca;
+            --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+            --border-radius: 1rem;
+            --transition: all 0.5s ease;
+        }
+
+        html {
+            font-size: 75%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 10rem 8% 2rem;
+        }
+
+        header {
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 9%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, color 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            color: var(--main-color);
+        }
+
+        span {
+            color: var(--main-color);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-left: 4rem;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--main-color);
+            border-bottom: 3px solid var(--main-color);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: transparent;
+            color: var(--main-color);
+            border: 2px solid var(--main-color);
+            border-radius: var(--border-radius);
+            font-size: 1.6rem;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            animation: fadeIn 1s ease, pulse 2s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.06);
+            }
+        }
+
+        .nav-btn:hover {
+            background: var(--main-color);
+            color: var(--text-color);
+            box-shadow: 0 0 18px var(--main-color);
+        }
+
+        #menu-icon {
+            font-size: 3.6rem;
+            color: var(--main-color);
+            cursor: pointer;
+            display: none;
+            transition: color 0.3s ease;
+        }
+
+        #menu-icon:hover {
+            color: #0ef;
+        }
+
+        .home {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 0 8%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-content {
+            max-width: 700px;
+            z-index: 1;
+        }
+
+        .home-content h1 {
+            font-size: 6rem;
+            font-weight: 900;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .home-content p {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 2.5rem;
+            animation: fadeIn 1s ease;
+            line-height: 1.7;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            background: linear-gradient(to right, var(--main-color), #0ef);
+            color: var(--bg-color);
+            font-size: 2rem;
+            font-weight: 700;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            animation: pulse 3s infinite alternate;
+        }
+
+        .home-btn:hover {
+            background: linear-gradient(to right, #0ef, var(--main-color));
+            box-shadow: 0 0 25px var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            animation: slideInDown 1s ease;
+        }
+
+        .workout-plans-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--snd-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        .workout-plans-content h2 {
+            font-size: 3.5rem;
+            color: var(--main-color);
+            margin-bottom: 2rem;
+        }
+
+        .workout-plans-content p {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .plan-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .plan-card {
+            flex: 1 1 300px;
+            padding: 2rem;
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-1rem);
+            border-left: 0.5rem solid var(--main-color);
+            border-right: 0.5rem solid var(--main-color);
+        }
+
+        .plan-card i {
+            font-size: 4rem;
+            color: var(--main-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-card h3 {
+            font-size: 2.2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .plan-card p {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .plan-card ul {
+            list-style-type: disc;
+            margin: 0 auto;
+            text-align: left;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            max-width: 80%;
+        }
+
+        .plan-card li {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+    color: #fff;
+    padding: 3rem 0;
+    text-align: left;
+    background-color: #1a1a1a;
+}
+
+footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+footer .logo {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #45ffca;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.footer-links-col {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2rem;
+    margin-bottom: 1.5rem;
+    min-width: 180px;
+}
+
+.footer-links-col a {
+    color: #eee;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links-col a:hover {
+    color: #45ffca;
+    text-decoration: underline;
+}
+
+.footer .app-links {
+    display: flex;
+    margin-bottom: 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.footer .app-links a {
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer .app-links img {
+    height: auto;
+    max-width: 160px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+.footer .app-links img:hover{
+    transform: scale(1.05);
+}
+
+
+.footer .footer-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    color: #ccc;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.footer .social-links {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    margin-right: 1.5rem;
+    font-size: 2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .social-links a:hover {
+    background-color: #45ffca;
+    transform: translateY(-4px);
+}
+
+.footer .social-links img{
+    height: auto;
+    max-width: 48px;
+    transition:  transform 0.3s ease;
+}
+
+.footer .social-links img:hover{
+     transform: translateY(-4px);
+}
+@media (max-width: 768px) {
+    .footer .footer-links {
+        flex-direction: column;
+    }
+    .footer .footer-links-col {
+        margin-bottom: 1.5rem;
+        min-width: auto;
+    }
+    .footer .app-links {
+        flex-direction: column;
+    }
+    .footer .app-links a {
+        margin-bottom: 1rem;
+    }
+    .footer .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer .logo{
+        font-size: 2rem;
+    }
+   .footer .footer-text {
+        font-size: 0.8rem;
+    }
+    .footer .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+}
+
+        /* Responsive Media Queries */
+        @media (max-width: 991px) {
+            html {
+                font-size: 60%;
+            }
+
+            header {
+                padding: 2rem 5%;
+            }
+
+            section {
+                padding: 8rem 5% 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 5rem;
+            }
+
+            .home-content p {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 4rem;
+            }
+
+            .workout-plans-content h2 {
+                font-size: 3rem;
+            }
+
+            .workout-plans-content p {
+                font-size: 1.6rem;
+            }
+            .plan-cards .plan-card {
+                flex: 1 1 100%;
+            }
+             footer .app-links a {
+                margin: 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #menu-icon {
+                display: block;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--snd-bg-color);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                transition: var(--transition);
+                padding: 8rem 2rem;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .navbar.active {
+                right: 0;
+            }
+
+            .navbar a {
+                margin-left: 0;
+                margin-bottom: 2rem;
+                font-size: 2rem;
+            }
+
+            .navbar a:hover,
+            .navbar a.active {
+                border-bottom: none;
+                color: var(--main-color);
+            }
+
+            .nav-btn {
+                margin-top: 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 4rem;
+            }
+
+            .home-content p {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 3.5rem;
+            }
+
+            .workout-plans-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .workout-plans-content p {
+                font-size: 1.4rem;
+            }
+             footer .app-links a {
+                margin: 0.5rem;
+            }
+             form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%;
+            }
+
+            header {
+                padding: 2rem 3%;
+            }
+
+            section {
+                padding: 8rem 3% 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 3rem;
+            }
+
+            .home-content p {
+                font-size: 1.2rem;
+            }
+
+            .home-btn {
+                padding: 1rem 2.5rem;
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .workout-plans-content h2 {
+                font-size: 2rem;
+            }
+
+            .workout-plans-content p {
+                font-size: 1.2rem;
+            }
+             footer .app-links a {
+                margin: 0.5rem;
+                flex: none;
+                width: 100%;
+                max-width: 300px;
+            }
+             form {
+                padding: 1rem;
+            }
+             form h3{
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../index.html" class="logo">FitTrack<span>Pro</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <nav class="navbar">
+            <a href="../index.html#home">Home</a>
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#plans">Plans</a>
+            <a href="../index.html#contact">Contact</a>
+            <a href="login.html" class="nav-btn">Login</a>
+        </nav>
+        <div id="theme-toggle" class="ph-bold ph-moon"></div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Workout Plans</h1>
+            <p>
+                Reach your fitness goals with our personalized workout plans.
+            </p>
+            <a href="#contact" class="home-btn">Get Started</a>
+        </div>
+    </section>
+
+    <section class="workout-plans">
+        <h2 class="section-title">Workout Plans</h2>
+        <div class="workout-plans-content">
+            <h2>Find Your Perfect Plan</h2>
+            <p>
+                At FitTrack Pro, we offer a variety of workout plans designed to help you achieve your fitness goals. Whether you're looking to build muscle, lose weight, improve endurance, or simply get active, we have a plan that's right for you.
+            </p>
+
+            <div class="plan-cards">
+                <div class="plan-card">
+                    <i class="ph-bold ph-dumbbell"></i>
+                    <h3>Strength Training</h3>
+                    <p>Build muscle and strength with our comprehensive strength training program.</p>
+                    <ul>
+                        <li>Full-body workouts</li>
+                        <li>Progressive overload</li>
+                        <li>Focus on compound exercises</li>
+                        <li>Suitable for all levels</li>
+                    </ul>
+                </div>
+                <div class="plan-card">
+                    <i class="ph-bold ph-running"></i>
+                    <h3>Cardio Training</h3>
+                    <p>Improve your cardiovascular health and endurance with our cardio training plan.</p>
+                    <ul>
+                       <li>Interval training</li>
+                       <li>Endurance runs</li>
+                       <li>Cross-training options</li>
+                       <li>Customizable schedules</li>
+                    </ul>
+                </div>
+                <div class="plan-card">
+                    <i class="ph-bold ph-yoga"></i>
+                    <h3>Flexibility & Yoga</h3>
+                    <p>Enhance your flexibility, balance, and mind-body connection with our yoga and flexibility program.</p>
+                    <ul>
+                        <li>Various yoga styles</li>
+                        <li>Stretching routines</li>
+                        <li>Mindfulness practices</li>
+                        <li>Suitable for all levels</li>
+                    </ul>
+                </div>
+                <div class="plan-card">
+                    <i class="ph-bold ph-fire"></i>
+                    <h3>High Intensity Training</h3>
+                    <p>Burn calories and build endurance with high intensity interval training.</p>
+                    <ul>
+                        <li>Short, intense workouts</li>
+                        <li>Maximum calorie burn</li>
+                        <li>Improved cardiovascular health</li>
+                        <li>Efficient and effective</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="logo">FitTrackPro</a>
+            <div class="footer-links">
+                <div class="footer-links-col">
+                    <a href="#">Workout Plans</a>
+                    <a href="#">Exercise Library</a>
+                    <a href="#">Nutrition Guides</a>
+                    <a href="#">Trainer Profiles</a>
+                </div>
+                <div class="footer-links-col">
+                    <a href="#">About Us</a>
+                    <a href="#">Blogs</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-links-col">
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Security</a>
+                </div>
+            </div>
+            <div class="app-links">
+                 <a href="#">
+                    <img src="assets/app.svg" alt="Download on the App Store">
+                </a>
+                <a href="#">
+                    <img src="assets/play.png" alt="Get it on Google Play">
+                </a>
+            </div>
+            <div class="footer-text">
+                <p>Fuel your fitness journey with FitTrackPro.  Access expert-designed workout plans, nutritional guidance, and connect with certified trainers. #BeBetterEveryDay</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><img src="assets/youtube-icon-5.svg" alt="YouTube"></a>
+                <a href="#"><img src="assets/facebook-3-2.svg" alt="Facebook"></a>
+                <a href="#"><img src="assets/instagram-2016-5.svg" alt="Instagram"></a>
+                <a href="#"><img src="assets/twitter-logo-2.svg" alt="Twitter"></a>
+                <a href="#"><img src="assets/discord-6.svg" alt="Discord"></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuIcon = document.getElementById('menu-icon');
+        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelectorAll('.navbar a');
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const header = document.querySelector('header');
+
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            menuIcon.classList.toggle('active');});
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    navbar.classList.remove('active');
+                    menuIcon.classList.remove('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                 if (window.innerWidth < 768) {
+                    navbar.classList.remove('active');
+                    menuIcon.classList.remove('active');
+                }
+            });
+        });
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            header.classList.toggle('light-mode');
+
+            if (body.classList.contains('light-mode')) {
+                themeToggle.classList.remove('ph-moon');
+                themeToggle.classList.add('ph-sun');
+            } else {
+                themeToggle.classList.remove('ph-sun');
+                themeToggle.classList.add('ph-moon');
+            }
+        });
+    </script>
+</body>
+</html>
