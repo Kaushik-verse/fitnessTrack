@@ -514,32 +514,120 @@ footer .logo {
 }
 
 
+/* Responsive Media Queries */
+@media (max-width: 991px) {
+    html {
+        font-size: 60%;
+    }
+    
+    header {
+        padding: 2rem 5%;
+    }
+    
+    section {
+        padding: 8rem 5% 2rem;
+    }
+    
+    .pro-plan-content h2 {
+        font-size: 3.5rem;
+    }
+    
+    .pro-plan-content p, 
+    .pro-plan-features li {
+        font-size: 1.4rem;
+    }
+    
+    .pro-plan-features h3 {
+        font-size: 2rem;
+    }
+    
+    .pro-plan-price {
+        font-size: 2.5rem;
+    }
+    
+    .navbar a, footer .app-links a {
+        margin: 0.5rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .footer .footer-links {
+    #menu-icon {
+        display: block;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: var(--snd-bg-color);
+        display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        transition: var(--transition);
+        padding: 8rem 2rem;
+        z-index: 1000;
+        overflow-y: auto;
     }
-    .footer .footer-links-col {
-        margin-bottom: 1.5rem;
-        min-width: auto;
+    
+    .navbar.active {
+        right: 0;
     }
+    
+    .navbar a {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+    
+    .pro-plan-content h2 {
+        font-size: 3rem;
+    }
+    
+    .pro-plan-features h3 {
+        font-size: 1.8rem;
+    }
+    
+    .pro-plan-price {
+        font-size: 2rem;
+    }
+    
+    .heading {
+        font-size: 3rem;
+    }
+    
+    .footer .footer-links, 
     .footer .app-links {
         flex-direction: column;
     }
+    
+    .footer .footer-links-col, 
     .footer .app-links a {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        min-width: auto;
     }
-    .footer .social-links {
+    
+    .footer .social-links, 
+    .footer .footer-content {
         justify-content: center;
+        align-items: center;
+    }
+    
+    .footer .text {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
-    .footer .logo{
+    .footer .logo {
         font-size: 2rem;
     }
-   .footer .footer-text {
+    
+    .footer .footer-text {
         font-size: 0.8rem;
     }
+    
     .footer .social-links a {
         width: 40px;
         height: 40px;
@@ -548,185 +636,47 @@ footer .logo {
     }
 }
 
-        /* Responsive Media Queries */
-        @media (max-width: 991px) {
-            html {
-                font-size: 60%;
-            }
-
-            header {
-                padding: 2rem 5%;
-            }
-
-            section {
-                padding: 8rem 5% 2rem;
-            }
-
-            .pro-plan-content h2 {
-                font-size: 3.5rem;
-            }
-
-            .pro-plan-content p {
-                font-size: 1.4rem;
-            }
-
-            .pro-plan-features h3 {
-                font-size: 2rem;
-            }
-
-            .pro-plan-features li {
-                font-size: 1.4rem;
-            }
-
-            .pro-plan-price {
-                font-size: 2.5rem;
-            }
-
-            .navbar a {
-                margin-left: 2rem;
-            }
-            footer .app-links a {
-                margin: 0.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            #menu-icon {
-                display: block;
-            }
-
-            .navbar {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 300px;
-                height: 100vh;
-                background: var(--snd-bg-color);
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                transition: var(--transition);
-                padding: 8rem 2rem;
-                z-index: 1000;
-                overflow-y: auto;
-            }
-
-            .navbar.active {
-                right: 0;
-            }
-
-            .navbar a {
-                margin-left: 0;
-                margin-bottom: 2rem;
-                font-size: 2rem;
-            }
-
-            .navbar a:hover,
-            .navbar a.active {
-                border-bottom: none;
-                color: var(--main-color);
-            }
-
-            .nav-btn {
-                margin-top: 2rem;
-            }
-
-            .pro-plan-content h2 {
-                font-size: 3rem;
-            }
-
-            .pro-plan-content p {
-                font-size: 1.4rem;
-            }
-
-            .pro-plan-features h3 {
-                font-size: 1.8rem;
-            }
-
-            .pro-plan-features li {
-                font-size: 1.4rem;
-            }
-
-            .pro-plan-price {
-                font-size: 2rem;
-            }
-
-            .heading {
-                font-size: 3rem;
-            }
-
-            footer .footer-content {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            footer .app-links {
-                align-items: center;
-                margin-right: 0;
-                margin-bottom: 2rem;
-            }
-
-            footer .social-links {
-                margin-top: 2rem;
-            }
-
-            footer .text {
-                text-align: center;
-            }
-            footer .app-links a {
-                margin: 0.5rem;
-                flex: none;
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-
-        @media (max-width: 450px) {
-            html {
-                font-size: 50%;
-            }
-
-            header {
-                padding: 2rem 3%;
-            }
-
-            section {
-                padding: 8rem 3% 2rem;
-            }
-
-            .pro-plan-content h2 {
-                font-size: 2.5rem;
-            }
-
-            .pro-plan-content p {
-                font-size: 1.2rem;
-            }
-
-            .pro-plan-features h3 {
-                font-size: 1.6rem;
-            }
-
-            .pro-plan-features li {
-                font-size: 1.2rem;
-            }
-
-            .pro-plan-price {
-                font-size: 1.8rem;
-            }
-
-            .btn {
-                padding: 1rem 2.5rem;
-                font-size: 1.4rem;
-            }
-
-            footer .app-links a {
-                margin: 0.5rem;
-                flex: none;
-                width: 100%;
-                max-width: 300px;
-            }
-        }
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+    
+    header {
+        padding: 2rem 3%;
+    }
+    
+    section {
+        padding: 8rem 3% 2rem;
+    }
+    
+    .pro-plan-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .pro-plan-content p, 
+    .pro-plan-features li {
+        font-size: 1.2rem;
+    }
+    
+    .pro-plan-features h3 {
+        font-size: 1.6rem;
+    }
+    
+    .pro-plan-price {
+        font-size: 1.8rem;
+    }
+    
+    .btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.4rem;
+    }
+    
+    footer .app-links a {
+        flex: none;
+        width: 100%;
+        max-width: 300px;
+    }
+}
     </style>
 </head>
 <body>

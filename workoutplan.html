@@ -418,32 +418,133 @@ footer .logo {
 .footer .social-links img:hover{
      transform: translateY(-4px);
 }
+@media (max-width: 991px) {
+    html {
+        font-size: 60%;
+    }
+
+    header {
+        padding: 2rem 5%;
+    }
+
+    section {
+        padding: 8rem 5% 2rem;
+    }
+
+    .home-content h1 {
+        font-size: 5rem;
+    }
+
+    .home-content p,
+    .workout-plans-content p {
+        font-size: 1.6rem;
+    }
+
+    .section-title {
+        font-size: 4rem;
+    }
+
+    .workout-plans-content h2 {
+        font-size: 3rem;
+    }
+
+    .plan-cards .plan-card {
+        flex: 1 1 100%;
+    }
+
+    footer .app-links a {
+        margin: 0.5rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .footer .footer-links {
+    #menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: var(--snd-bg-color);
+        display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        transition: var(--transition);
+        padding: 8rem 2rem;
+        z-index: 1000;
+        overflow-y: auto;
     }
-    .footer .footer-links-col {
-        margin-bottom: 1.5rem;
-        min-width: auto;
+
+    .navbar.active {
+        right: 0;
     }
+
+    .navbar a {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+        color: var(--main-color);
+    }
+
+    .nav-btn {
+        margin-top: 2rem;
+    }
+
+    .home-content h1 {
+        font-size: 4rem;
+    }
+
+    .home-content p,
+    .workout-plans-content p {
+        font-size: 1.4rem;
+    }
+
+    .section-title {
+        font-size: 3.5rem;
+    }
+
+    .workout-plans-content h2 {
+        font-size: 2.5rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+
+    .footer .footer-links,
     .footer .app-links {
         flex-direction: column;
     }
+
+    .footer .footer-links-col {
+        margin-bottom: 1.5rem;
+    }
+
     .footer .app-links a {
         margin-bottom: 1rem;
     }
+
     .footer .social-links {
         justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
-    .footer .logo{
+    .footer .logo {
         font-size: 2rem;
     }
-   .footer .footer-text {
+
+    .footer .footer-text {
         font-size: 0.8rem;
     }
+
     .footer .social-links a {
         width: 40px;
         height: 40px;
@@ -452,166 +553,55 @@ footer .logo {
     }
 }
 
-        /* Responsive Media Queries */
-        @media (max-width: 991px) {
-            html {
-                font-size: 60%;
-            }
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
 
-            header {
-                padding: 2rem 5%;
-            }
+    header {
+        padding: 2rem 3%;
+    }
 
-            section {
-                padding: 8rem 5% 2rem;
-            }
+    section {
+        padding: 8rem 3% 2rem;
+    }
 
-            .home-content h1 {
-                font-size: 5rem;
-            }
+    .home-content h1 {
+        font-size: 3rem;
+    }
 
-            .home-content p {
-                font-size: 1.6rem;
-            }
+    .home-content p,
+    .workout-plans-content p {
+        font-size: 1.2rem;
+    }
 
-            .section-title {
-                font-size: 4rem;
-            }
+    .home-btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.4rem;
+    }
 
-            .workout-plans-content h2 {
-                font-size: 3rem;
-            }
+    .section-title {
+        font-size: 3rem;
+    }
 
-            .workout-plans-content p {
-                font-size: 1.6rem;
-            }
-            .plan-cards .plan-card {
-                flex: 1 1 100%;
-            }
-             footer .app-links a {
-                margin: 0.5rem;
-            }
-        }
+    .workout-plans-content h2 {
+        font-size: 2rem;
+    }
 
-        @media (max-width: 768px) {
-            #menu-icon {
-                display: block;
-            }
+    footer .app-links a {
+        margin: 0.5rem;
+        width: 100%;
+        max-width: 300px;
+    }
 
-            .navbar {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 300px;
-                height: 100vh;
-                background: var(--snd-bg-color);
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                transition: var(--transition);
-                padding: 8rem 2rem;
-                z-index: 1000;
-                overflow-y: auto;
-            }
+    form {
+        padding: 1rem;
+    }
 
-            .navbar.active {
-                right: 0;
-            }
-
-            .navbar a {
-                margin-left: 0;
-                margin-bottom: 2rem;
-                font-size: 2rem;
-            }
-
-            .navbar a:hover,
-            .navbar a.active {
-                border-bottom: none;
-                color: var(--main-color);
-            }
-
-            .nav-btn {
-                margin-top: 2rem;
-            }
-
-            .home-content h1 {
-                font-size: 4rem;
-            }
-
-            .home-content p {
-                font-size: 1.4rem;
-            }
-
-            .section-title {
-                font-size: 3.5rem;
-            }
-
-            .workout-plans-content h2 {
-                font-size: 2.5rem;
-            }
-
-            .workout-plans-content p {
-                font-size: 1.4rem;
-            }
-             footer .app-links a {
-                margin: 0.5rem;
-            }
-             form {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 450px) {
-            html {
-                font-size: 50%;
-            }
-
-            header {
-                padding: 2rem 3%;
-            }
-
-            section {
-                padding: 8rem 3% 2rem;
-            }
-
-            .home-content h1 {
-                font-size: 3rem;
-            }
-
-            .home-content p {
-                font-size: 1.2rem;
-            }
-
-            .home-btn {
-                padding: 1rem 2.5rem;
-                font-size: 1.4rem;
-            }
-
-            .section-title {
-                font-size: 3rem;
-            }
-
-            .workout-plans-content h2 {
-                font-size: 2rem;
-            }
-
-            .workout-plans-content p {
-                font-size: 1.2rem;
-            }
-             footer .app-links a {
-                margin: 0.5rem;
-                flex: none;
-                width: 100%;
-                max-width: 300px;
-            }
-             form {
-                padding: 1rem;
-            }
-             form h3{
-                font-size: 2rem;
-            }
-        }
+    form h3 {
+        font-size: 2rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -626,7 +616,6 @@ footer .logo {
             <a href="../index.html#contact">Contact</a>
             <a href="login.html" class="nav-btn">Login</a>
         </nav>
-        <div id="theme-toggle" class="ph-bold ph-moon"></div>
     </header>
 
     <section class="home" id="home">
@@ -649,7 +638,6 @@ footer .logo {
 
             <div class="plan-cards">
                 <div class="plan-card">
-                    <i class="ph-bold ph-dumbbell"></i>
                     <h3>Strength Training</h3>
                     <p>Build muscle and strength with our comprehensive strength training program.</p>
                     <ul>
@@ -660,7 +648,6 @@ footer .logo {
                     </ul>
                 </div>
                 <div class="plan-card">
-                    <i class="ph-bold ph-running"></i>
                     <h3>Cardio Training</h3>
                     <p>Improve your cardiovascular health and endurance with our cardio training plan.</p>
                     <ul>
@@ -671,7 +658,6 @@ footer .logo {
                     </ul>
                 </div>
                 <div class="plan-card">
-                    <i class="ph-bold ph-yoga"></i>
                     <h3>Flexibility & Yoga</h3>
                     <p>Enhance your flexibility, balance, and mind-body connection with our yoga and flexibility program.</p>
                     <ul>
@@ -682,7 +668,6 @@ footer .logo {
                     </ul>
                 </div>
                 <div class="plan-card">
-                    <i class="ph-bold ph-fire"></i>
                     <h3>High Intensity Training</h3>
                     <p>Burn calories and build endurance with high intensity interval training.</p>
                     <ul>
@@ -741,52 +726,38 @@ footer .logo {
     </footer>
 
     <script>
-        const menuIcon = document.getElementById('menu-icon');
-        const navbar = document.querySelector('.navbar');
-        const navLinks = document.querySelectorAll('.navbar a');
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        const header = document.querySelector('header');
+       const menuIcon = document.getElementById('menu-icon');
+const navbar = document.querySelector('.navbar');
+const navLinks = document.querySelectorAll('.navbar a');
 
-        menuIcon.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            menuIcon.classList.toggle('active');});
+menuIcon.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+    menuIcon.classList.toggle('active');
+});
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth < 768) {
-                    navbar.classList.remove('active');
-                    menuIcon.classList.remove('active');
-                }
-            });
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+            navbar.classList.remove('active');
+            menuIcon.classList.remove('active');
+        }
+    });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
         });
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                 if (window.innerWidth < 768) {
-                    navbar.classList.remove('active');
-                    menuIcon.classList.remove('active');
-                }
-            });
-        });
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            header.classList.toggle('light-mode');
-
-            if (body.classList.contains('light-mode')) {
-                themeToggle.classList.remove('ph-moon');
-                themeToggle.classList.add('ph-sun');
-            } else {
-                themeToggle.classList.remove('ph-sun');
-                themeToggle.classList.add('ph-moon');
-            }
-        });
+        if (window.innerWidth < 768) {
+            navbar.classList.remove('active');
+            menuIcon.classList.remove('active');
+        }
+    });
+});
     </script>
 </body>
 </html>

@@ -660,44 +660,43 @@ footer .logo {
 
         /* Responsive Media Queries */
         @media (max-width: 991px) {
-            html {
-                font-size: 60%;
-            }
-
-            header {
-                padding: 2rem 5%;
-            }
-
-            section {
-                padding: 8rem 5% 2rem;
-            }
-
-            .home-content h1 {
-                font-size: 5rem;
-            }
-
-            .home-content p {
-                font-size: 1.6rem;
-            }
-
-            .section-title {
-                font-size: 4rem;
-            }
-
-            .workout-tracking-content h2 {
-                font-size: 3rem;
-            }
-
-            .workout-tracking-content p {
-                font-size: 1.6rem;
-            }
-            .tracking-features .feature-box {
-                flex: 1 1 100%;
-            }
-             footer .app-links a {
-                margin: 0.5rem;
-            }
+        html {
+            font-size: 60%;
         }
+
+        header {
+            padding: 2rem 5%;
+        }
+
+        section {
+            padding: 8rem 5% 2rem;
+        }
+
+        .home-content h1 {
+            font-size: 5rem;
+        }
+
+        .home-content p,
+        .workout-tracking-content p {
+            font-size: 1.6rem;
+        }
+
+        .section-title {
+            font-size: 4rem;
+        }
+
+        .workout-tracking-content h2 {
+            font-size: 3rem;
+        }
+
+        .tracking-features .feature-box {
+            flex: 1 1 100%;
+        }
+
+        footer .app-links a {
+            margin: 0.5rem;
+        }
+    }
 
         @media (max-width: 768px) {
             #menu-icon {
@@ -726,26 +725,21 @@ footer .logo {
             }
 
             .navbar a {
-                margin-left: 0;
                 margin-bottom: 2rem;
                 font-size: 2rem;
             }
 
             .navbar a:hover,
             .navbar a.active {
-                border-bottom: none;
                 color: var(--main-color);
-            }
-
-            .nav-btn {
-                margin-top: 2rem;
             }
 
             .home-content h1 {
                 font-size: 4rem;
             }
 
-            .home-content p {
+            .home-content p,
+            .workout-tracking-content p {
                 font-size: 1.4rem;
             }
 
@@ -757,13 +751,7 @@ footer .logo {
                 font-size: 2.5rem;
             }
 
-            .workout-tracking-content p {
-                font-size: 1.4rem;
-            }
-             footer .app-links a {
-                margin: 0.5rem;
-            }
-             form {
+            form {
                 padding: 1.5rem;
             }
         }
@@ -785,7 +773,8 @@ footer .logo {
                 font-size: 3rem;
             }
 
-            .home-content p {
+            .home-content p,
+            .workout-tracking-content p {
                 font-size: 1.2rem;
             }
 
@@ -802,22 +791,20 @@ footer .logo {
                 font-size: 2rem;
             }
 
-            .workout-tracking-content p {
-                font-size: 1.2rem;
-            }
-             footer .app-links a {
+            footer .app-links a {
                 margin: 0.5rem;
-                flex: none;
                 width: 100%;
                 max-width: 300px;
             }
-             form {
+
+            form {
                 padding: 1rem;
             }
-             form h3{
+
+            form h3 {
                 font-size: 2rem;
             }
-        }
+    }
     </style>
 </head>
 <body>
@@ -959,142 +946,126 @@ footer .logo {
     </footer>
 
     <script>
-        const menuIcon = document.getElementById('menu-icon');
-        const navbar = document.querySelector('.navbar');
-        const navLinks = document.querySelectorAll('.navbar a');
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        const header = document.querySelector('header');
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.navbar a');
 
-        menuIcon.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            menuIcon.classList.toggle('active');});
+    menuIcon.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+        menuIcon.classList.toggle('active');
+    });
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth < 768) {
-                    navbar.classList.remove('active');
-                    menuIcon.classList.remove('active');
-                }
-            });
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                 if (window.innerWidth < 768) {
-                    navbar.classList.remove('active');
-                    menuIcon.classList.remove('active');
-                }
-            });
-        });
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            header.classList.toggle('light-mode');
-
-            if (body.classList.contains('light-mode')) {
-                themeToggle.classList.remove('ph-moon');
-                themeToggle.classList.add('ph-sun');
-            } else {
-                themeToggle.classList.remove('ph-sun');
-                themeToggle.classList.add('ph-moon');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                navbar.classList.remove('active');
+                menuIcon.classList.remove('active');
             }
         });
+    });
 
-        // Get references to form elements
-        const workoutForm = document.getElementById('workout-form');
-        const exerciseSelect = document.getElementById('exercise');
-        const exerciseList = document.getElementById('exercise-list').querySelector('ul');
-        const workoutLogList = document.getElementById('workout-log-list');
-        const clearLogBtn = document.getElementById('clear-log-btn');
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
 
-
-        let workouts = [];
-        let exercises = [
-            "Bench Press", "Squat", "Deadlift", "Overhead Press", "Barbell Row",
-            "Dumbbell Curl", "Triceps Extension", "Leg Press", "Calf Raise", "Pull-up",
-            "Push-up", "Sit-up", "Plank"
-        ];
-
-        exercises.forEach(exercise => {
-            let option = document.createElement('option');
-            option.value = exercise;
-            option.textContent = exercise;
-            exerciseSelect.appendChild(option);
-
-            let listItem = document.createElement('li');
-            listItem.textContent = exercise;
-            exerciseList.appendChild(listItem);
-        });
-
-        function displayWorkouts() {
-            workoutLogList.innerHTML = '';
-            workouts.forEach(workout => {
-                let listItem = document.createElement('li');
-                listItem.innerHTML = `
-                    <strong>Date:</strong> ${workout.date},
-                    <strong>Exercise:</strong> ${workout.exercise},
-                    <strong>Sets:</strong> ${workout.sets},
-                    <strong>Reps:</strong> ${workout.reps},
-                    <strong>Weight:</strong> ${workout.weight} lbs,
-                    <strong>Notes:</strong> ${workout.notes}
-                `;
-                workoutLogList.appendChild(listItem);
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
+            if (window.innerWidth < 768) {
+                navbar.classList.remove('active');
+                menuIcon.classList.remove('active');
+            }
+        });
+    });
+
+    // Get references to form elements
+    const workoutForm = document.getElementById('workout-form');
+    const exerciseSelect = document.getElementById('exercise');
+    const exerciseList = document.getElementById('exercise-list').querySelector('ul');
+    const workoutLogList = document.getElementById('workout-log-list');
+    const clearLogBtn = document.getElementById('clear-log-btn');
+
+    let workouts = [];
+    let exercises = [
+        "Bench Press", "Squat", "Deadlift", "Overhead Press", "Barbell Row",
+        "Dumbbell Curl", "Triceps Extension", "Leg Press", "Calf Raise", "Pull-up",
+        "Push-up", "Sit-up", "Plank"
+    ];
+
+    exercises.forEach(exercise => {
+        let option = document.createElement('option');
+        option.value = exercise;
+        option.textContent = exercise;
+        exerciseSelect.appendChild(option);
+
+        let listItem = document.createElement('li');
+        listItem.textContent = exercise;
+        exerciseList.appendChild(listItem);
+    });
+
+    function displayWorkouts() {
+        workoutLogList.innerHTML = '';
+        workouts.forEach(workout => {
+            let listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <strong>Date:</strong> ${workout.date},
+                <strong>Exercise:</strong> ${workout.exercise},
+                <strong>Sets:</strong> ${workout.sets},
+                <strong>Reps:</strong> ${workout.reps},
+                <strong>Weight:</strong> ${workout.weight} lbs,
+                <strong>Notes:</strong> ${workout.notes}
+            `;
+            workoutLogList.appendChild(listItem);
+        });
+    }
+
+    workoutForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const workoutDate = document.getElementById('date').value;
+        const workoutExercise = document.getElementById('exercise').value;
+        const workoutSets = parseInt(document.getElementById('sets').value);
+        const workoutReps = parseInt(document.getElementById('reps').value);
+        const workoutWeight = parseInt(document.getElementById('weight').value);
+        const workoutNotes = document.getElementById('notes').value;
+
+        if (workoutSets <= 0 || workoutReps <= 0 || workoutWeight < 0) {
+            alert("Please enter valid values for sets, reps, and weight.");
+            return;
         }
 
-
-        workoutForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            const workoutDate = document.getElementById('date').value;
-            const workoutExercise = document.getElementById('exercise').value;
-            const workoutSets = parseInt(document.getElementById('sets').value);
-            const workoutReps = parseInt(document.getElementById('reps').value);
-            const workoutWeight = parseInt(document.getElementById('weight').value);
-            const workoutNotes = document.getElementById('notes').value;
-
-            if (workoutSets <= 0 || workoutReps <= 0 || workoutWeight < 0) {
-                alert("Please enter valid values for sets, reps, and weight.");
-                return;
-            }
-
-            const newWorkout = {
-                date: workoutDate,
-                exercise: workoutExercise,
-                sets: workoutSets,
-                reps: workoutReps,
-                weight: workoutWeight,
-                notes: workoutNotes
-            };
-
-            workouts.push(newWorkout);
-            localStorage.setItem('workouts', JSON.stringify(workouts));
-
-            workoutForm.reset();
-            displayWorkouts();
-            alert("Workout logged successfully!");
-        });
-
-        clearLogBtn.addEventListener('click', () => {
-            workouts = [];
-            localStorage.removeItem('workouts');
-            displayWorkouts();
-            alert("Workout log cleared!");
-        });
-
-        window.onload = () => {
-            const storedWorkouts = localStorage.getItem('workouts');
-            if (storedWorkouts) {
-                workouts = JSON.parse(storedWorkouts);
-            }
-            displayWorkouts();
+        const newWorkout = {
+            date: workoutDate,
+            exercise: workoutExercise,
+            sets: workoutSets,
+            reps: workoutReps,
+            weight: workoutWeight,
+            notes: workoutNotes
         };
+
+        workouts.push(newWorkout);
+        localStorage.setItem('workouts', JSON.stringify(workouts));
+
+        workoutForm.reset();
+        displayWorkouts();
+        alert("Workout logged successfully!");
+    });
+
+    clearLogBtn.addEventListener('click', () => {
+        workouts = [];
+        localStorage.removeItem('workouts');
+        displayWorkouts();
+        alert("Workout log cleared!");
+    });
+
+    window.onload = () => {
+        const storedWorkouts = localStorage.getItem('workouts');
+        if (storedWorkouts) {
+            workouts = JSON.parse(storedWorkouts);
+        }
+        displayWorkouts();
+    };
+
     </script>
 </body>
 </html>

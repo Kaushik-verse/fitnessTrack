@@ -1,9 +1,6 @@
 const menuIcon = document.getElementById('menu-icon');
 const navbar = document.querySelector('.navbar');
 const navLinks = document.querySelectorAll('.navbar a');
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-const header = document.querySelector('header');
 
 menuIcon.addEventListener('click', () => {
     navbar.classList.toggle('active');
@@ -28,13 +25,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             menuIcon.classList.remove('active');
         }
     });
-});
-
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-    header.classList.toggle('light-mode');
-    themeToggle.classList.toggle('ph-moon');
-    themeToggle.classList.toggle('ph-sun');
 });
 
 // Goal Setting Logic

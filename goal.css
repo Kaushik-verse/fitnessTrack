@@ -218,8 +218,6 @@ span {
     animation: slideInDown 1s ease;
 }
 
-
-
 .goal-setting-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -354,7 +352,6 @@ form button:hover {
     word-wrap: break-word;
     line-height: 1.7;
 }
-
 
 footer {
     color: #fff;
@@ -503,7 +500,6 @@ footer .logo {
         font-size: 4rem;
     }
 
-    
     footer .app-links a {
         margin: 0.5rem;
     }
@@ -536,19 +532,8 @@ footer .logo {
     }
 
     .navbar a {
-        margin-left: 0;
         margin-bottom: 2rem;
         font-size: 2rem;
-    }
-
-    .navbar a:hover,
-    .navbar a.active {
-        border-bottom: none;
-        color: var(--main-color);
-    }
-
-    .nav-btn {
-        margin-top: 2rem;
     }
 
     .home-content h1 {
@@ -563,10 +548,6 @@ footer .logo {
         font-size: 3.5rem;
     }
 
-    
-    footer .app-links a {
-        margin: 0.5rem;
-    }
     form {
         padding: 1.5rem;
     }
@@ -602,17 +583,16 @@ footer .logo {
         font-size: 3rem;
     }
 
-    
     footer .app-links a {
-        margin: 0.5rem;
-        flex: none;
         width: 100%;
         max-width: 300px;
     }
+
     form {
         padding: 1rem;
     }
-    form h3{
+
+    form h3 {
         font-size: 2rem;
     }
 }
