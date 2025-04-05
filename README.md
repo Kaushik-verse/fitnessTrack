@@ -53,9 +53,7 @@ FitnessVerse is a responsive and interactive web application that empowers users
 ## 🚀 Live Demo
 
 🌐 Click here to view the project live:  
-👉 [FitnessVerse Live Demo](https://your-username.github.io/FitnessVerse)
-
-> Replace `your-username` with your actual GitHub username in the link above.
+👉 [FitnessVerse Live Demo](https://kaushik-verse.github.io/fitnessTrack/)
 
 ---
 
